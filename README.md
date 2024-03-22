@@ -12,15 +12,15 @@ Clone the project using "git clone https://github.com/deepeshrastogi/task.git"
 
 3 - Run the given below commands step by step
     
-    1 - composer update
+    > composer update
     
-    2 - php artisan optimize
+    > php artisan optimize
     
-    3 - php artisan migrate
+    > php artisan migrate
     
-    4 - php artisan db:seed --class=TaskSeeder
+    > php artisan db:seed --class=TaskSeeder
     
-    5- php artisan serve --port=8000
+    > php artisan serve --port=8000
 
 4 - I have created an API Collection folder which exists in the root folder, Please import the given collection in Postman software.
 
