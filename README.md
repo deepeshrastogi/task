@@ -25,7 +25,9 @@ Clone the project using "git clone https://github.com/deepeshrastogi/task.git"
 4 - I have created an API Collection folder which exists in the root folder, Please import the given collection in Postman software.
 
 5 - Please use given below Login Details
+    
     email : admin@yopmail.com
+    
     password : admin@123
 
 
