@@ -3,7 +3,7 @@ namespace App\Repositories\Interfaces\Tasks;
 
 /*
  * Interface TaskRepositoryInterface
- * @package App\Repositories
+ * @package App\Repositories\Interfaces\Tasks
  */
 interface TaskRepositoryInterface
 {

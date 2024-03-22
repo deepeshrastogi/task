@@ -9,8 +9,8 @@ class AttachmentRepository implements AttachmentRepositoryInterface
 
     /**
      * stor task details.
-     *  @param array of $taskData
-     *  @return object of created $task
+     *  @param array of $attachmentData
+     *  @return object of $attachment
      */
     public function storeAttachment($attachmentData)
     {

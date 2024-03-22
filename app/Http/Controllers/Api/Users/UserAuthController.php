@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class UserAuthController extends Controller
 {
@@ -20,12 +22,36 @@ class UserAuthController extends Controller
      */
     public function login(Request $request)
     {
-        return $this->userService->login($request);
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email:filter',
+            'password' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return $this->error($validator->errors(), 401);
+        }
+
+        $credentials = request(['email', 'password']);
+        if (!Auth::attempt($credentials)) {
+            return $this->error(['error' => 'Unauthorized'], 401);
+        }
+        $response = $this->userService->login($request);
+        return $this->success(message: 'You are successfully logged in', content: $response);
     }
 
     public function signup(Request $request)
     {
-        return $this->userService->signup($request);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->errors(), 401);
+        }
+        $response = $this->userService->signup($request);
+        return $this->success(message: 'Your account is created successfully', content: $response);
     }
 
     /**
@@ -34,15 +60,7 @@ class UserAuthController extends Controller
      */
     public function logout(Request $request)
     {
-        return $this->userService->logout($request);
-    }
-
-    /**
-     * dashboard through get
-     * @return [json] \Illuminate\Http\Response
-     */
-    public function dashboard(Request $request)
-    {
-        return $this->userService->dashboard($request);
+        $this->userService->logout($request);
+        return $this->success(message: 'You are successfully logged out', content: []);
     }
 }

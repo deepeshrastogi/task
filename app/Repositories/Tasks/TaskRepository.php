@@ -18,37 +18,43 @@ class TaskRepository implements TaskRepositoryInterface
         return $task;
     }
 
+    /**
+     * get tasks list.
+     *  @param [int,array] of [$loginUserId,$filter]
+     *  @return object of $tasks list
+     */
+
     public function getUserTaskList($loginUserId,$filter)
     {
         $notesFilter = "";
         if(!empty($filter['notes'])){
             $notesFilter = $filter['notes'];
         }
-        $taskData = Task::withCount('notes')
+        $tasks = Task::withCount('notes')
         ->with(['notes.attachments'])
         ->where('user_id',$loginUserId);
         if (!empty($notesFilter)) {
             $relationShipconditions = ['with','whereHas'];
             foreach($relationShipconditions as $condition){
-                $taskData = $taskData->$condition('notes',function($q) use($notesFilter){
+                $tasks = $tasks->$condition('notes',function($q) use($notesFilter){
                     $q->where('note', 'like', '%' . $notesFilter . '%');
                 });
             }
         }
         
         if(!empty($filter['status'])){
-            $taskData = $taskData->where('status',$filter['status']);
+            $tasks = $tasks->where('status',$filter['status']);
         }
         if(!empty($filter['due_date'])){
-            $taskData = $taskData->where('due_date',$filter['due_date']);
+            $tasks = $tasks->where('due_date',$filter['due_date']);
         }
         if(!empty($filter['priority'])){
-            $taskData = $taskData->where('priority',$filter['priority']);
+            $tasks = $tasks->where('priority',$filter['priority']);
         }
-        $taskData = $taskData->having('notes_count','>',0)
+        $tasks = $tasks->having('notes_count','>',0)
         ->priority('high')
         ->orderBy('notes_count', 'desc')
         ->get();
-        return $taskData;
+        return $tasks;
     }
 }

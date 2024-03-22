@@ -3,7 +3,7 @@ namespace App\Repositories\Interfaces\Attachments;
 
 /*
  * Interface AttachmentRepositoryInterface
- * @package App\Repositories
+ * @package App\Repositories\Interfaces\Attachments
  */
 interface AttachmentRepositoryInterface
 {

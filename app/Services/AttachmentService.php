@@ -10,10 +10,6 @@ class AttachmentService
 
     use ApiResponse;
     /**
-     * @var $attachmentRepository
-     */
-
-    /**
      * order constructor.
      *
      * @param Repository $attachmentRepository
@@ -41,7 +37,7 @@ class AttachmentService
             'temp_name' => $uniqueFname,
             'url' => $url
         ];
-        $attachment = $this->attachmentRepository->storeAttachment($attachmentData);
+        $attachment = $this->attachmentRepository->storeAttachment($attachmentData); //store data in attachment table
         return $attachment;
     }
 

@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "6b0b7bb6-1e04-458a-be89-8f25698e7a1d",
+		"name": "task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "12098968"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"deepesh rastogi\",\r\n    \"email\":\"admin@yopmail.com\",\r\n    \"password\":\"admin@123\",\r\n    \"confirm_password\":\"admin@123\"\r\n}"
+						},
+						"url": "{{local}}user/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"deepesh@yopmail.com\",\r\n    \"password\":\"deepesh@123\"\r\n}"
+						},
+						"url": "{{local}}user/login"
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 3|494OpeitTFgaV7YrHeL4baduLuJZwMttVFkAwmp41463f30e",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{local}}user/logout"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 4|yMVkX9TdcOFa1blgM38mXeWDmlBFKzVSNeONen8j912cdb18",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "task 5",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Description 1",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-03-21 15:55:20",
+									"type": "text"
+								},
+								{
+									"key": "due_date",
+									"value": "2025-02-21 15:55:20",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "New",
+									"type": "text"
+								},
+								{
+									"key": "priority",
+									"value": "High",
+									"type": "text"
+								},
+								{
+									"key": "note[0][subject]",
+									"value": "subject 1",
+									"type": "text"
+								},
+								{
+									"key": "note[0][note]",
+									"value": "Note 1",
+									"type": "text"
+								},
+								{
+									"key": "note[0][attachment][]",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "note[1][subject]",
+									"value": "subject 2",
+									"type": "text"
+								},
+								{
+									"key": "note[1][note]",
+									"value": "note 2",
+									"type": "text"
+								},
+								{
+									"key": "note[1][attachment][]",
+									"type": "file",
+									"src": [
+										"/C:/Users/dell/Downloads/417398796_872098278049547_3262234177728464726_n.jpg",
+										"/C:/Users/dell/Downloads/Resume (5).pdf"
+									]
+								},
+								{
+									"key": "note[2][subject]",
+									"value": "abcd",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "note[2][note]",
+									"value": "abcdedfdsafasdfasdf",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "note[2][attachment][]",
+									"type": "file",
+									"src": [
+										"/C:/Users/dell/Downloads/417398796_872098278049547_3262234177728464726_n.jpg",
+										"/C:/Users/dell/Downloads/94208.jpg"
+									],
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{local}}task"
+					},
+					"response": []
+				},
+				{
+					"name": "tasks-list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 4|yMVkX9TdcOFa1blgM38mXeWDmlBFKzVSNeONen8j912cdb18",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"\",\r\n    \"due_date\":\"\",\r\n    \"priority\":\"\",\r\n    \"notes\":\"\"\r\n}"
+						},
+						"url": "{{local}}task"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

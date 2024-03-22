@@ -3,7 +3,7 @@ namespace App\Repositories\Interfaces\Notes;
 
 /*
  * Interface NoteRepositoryInterface
- * @package App\Repositories
+ * @package App\Repositories\Interfaces\Notes
  */
 interface NoteRepositoryInterface
 {

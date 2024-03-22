@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Task;
-use App\Models\Note;
 use App\Models\Attachment;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Hash;
@@ -40,15 +39,15 @@ class TaskSeeder extends Seeder
                 'priority' => $faker->randomElement(['Low', 'Medium', 'High']),
                 'user_id' => $user->id
             ];
-            
+
             $task = Task::create($taskData);
-            for($j=0; $j< mt_rand(1,5); $j++){
+            for($j=0; $j< mt_rand(1,3); $j++){
                 $noteData = [
                     'subject' => $faker->sentence,
                     'note' => $faker->paragraph,
                     'task_id' => $task->id,
                 ];
-                $note = Note::create($noteData);
+                $note = $task->notes()->create($noteData);
                 for($k=0; $k< mt_rand(1,2); $k++){
                     $randomFileName = $faker->image($destinationPath, 400, 300, null, false);
                     $pathParts = pathinfo($randomFileName);

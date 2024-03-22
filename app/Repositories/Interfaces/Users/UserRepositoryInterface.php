@@ -3,7 +3,7 @@ namespace App\Repositories\Interfaces\Users;
 
 /*
  * Interface UserRepositoryInterface
- * @package App\Repositories
+ * @package App\Repositories\Interfaces\Users
  */
 interface UserRepositoryInterface
 {

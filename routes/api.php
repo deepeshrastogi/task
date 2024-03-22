@@ -26,10 +26,6 @@ Route::group(['middleware' => 'api','as' => 'api.'], function () {
     });
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
-        // Route::get('task/list-name', [TaskController::class, 'getTaskNameList'])->name('task.name.list');
-        // Route::get('task/trashed', [TaskController::class, 'trashedTasks'])->name('task.trashed.list');
-        // Route::resource('task', TaskController::class)->except(['create','edit']);
         Route::resource('task', TaskController::class)->only(['index','store']);
-        // Route::resource('sub-task', SubTaskController::class)->only(['store']);
     });
 });
