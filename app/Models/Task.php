@@ -42,4 +42,9 @@ class Task extends Model
     {
         return $this->hasMany(Note::class);
     }
+
+    public function scopePriority($query,$priority)
+    {
+        return $query->orderByRaw("FIELD(priority, '".$priority."') DESC");
+    }
 }

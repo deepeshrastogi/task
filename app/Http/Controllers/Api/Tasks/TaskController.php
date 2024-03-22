@@ -5,7 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Services\TaskService;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
-
+use Validator;
+use App\Models\Task; // need remove after code
 class TaskController extends Controller
 {
 
@@ -19,7 +20,9 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->taskService->index($request);
+        $task = $this->taskService->index($request);
+        $response = ['task' => $task];
+        return $this->success(message: 'Tasks have been fetched successfully', content: $response);
     }
 
     /**
@@ -29,55 +32,19 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->taskService->store($request);
-    }
-
-    /**
-     * Tasks List
-     * @param  \Illuminate\Http\Request
-     * @return [json] token object, through an error if user credentials are not valid
-     */
-    public function show(Request $request, string $id)
-    {
-        return $this->taskService->show($request,$id);
-    }
-
-
-    /**
-     * destroy through get
-     * @return [json] \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, string $id)
-    {
-        return $this->taskService->destroy($request,$id);
-    }
-
-     /**
-     * update task status through patch
-     * @return [json] \Illuminate\Http\Response
-     */
-    public function update(Request $request, string $id)
-    {
-        return $this->taskService->updateTaskStatus($request,$id);
-    }
-
-    /**
-     * getTaskNameList through get
-     * @return [json] \Illuminate\Http\Response
-     */
-    public function getTaskNameList(Request $request)
-    {
-        return $this->taskService->getTaskNameList($request);
-    }
-
-    /**
-     * trashTasks through get
-     * @return [json] \Illuminate\Http\Response
-     */
-    public function trashedTasks(Request $request)
-    {
-        return $this->taskService->trashedTasks($request);
-    }
-
-    
+        $validateArr = [
+            'subject' => 'required|unique:tasks',
+            'description' => 'required',
+            'start_date' => 'required',
+            'due_date' => 'required|after:start_date',
+            'status' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $validateArr);
+        if ($validator->fails()) {
+            return $this->error($validator->errors(), 401);
+        }
+        $task = $this->taskService->store($request); // call task service to store task
+        $response = ['task' => $task];
+        return $this->success(message: 'Your task is created successfully', content: $response, status:201);
+    } 
 }

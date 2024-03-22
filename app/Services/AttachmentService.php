@@ -28,7 +28,7 @@ class AttachmentService
         $destinationPath = public_path('uploads');
         $pulicUrlPath = url('/') . '/uploads/';
         if (!file_exists($destinationPath)) {
-            mkdir($destinationPath, 0777, true); // Create the directory recursively
+            mkdir($destinationPath, 0775, true); // Create the directory recursively
         }
         $file = $request->attachments;
         $fileExtension = time() . '.' . $file->getClientOriginalExtension();

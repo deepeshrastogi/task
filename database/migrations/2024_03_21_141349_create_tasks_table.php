@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('status', ['New', 'Incomplete', 'Completed'])->default('New');
             $table->enum('priority', ['Low', 'Medium', 'High']);
             $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

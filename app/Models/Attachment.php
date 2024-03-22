@@ -8,7 +8,6 @@ class Attachment extends Model
 {
     use HasFactory;
     protected $table = "attachments";
-
     
     /**
      * The attributes that are mass assignable.
@@ -28,6 +27,7 @@ class Attachment extends Model
      */
     protected $hidden = [
         'created_at',
-        'updated_at'
+        'updated_at',
+        'pivot'
     ];
 }
