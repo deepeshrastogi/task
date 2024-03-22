@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attachments', function (Blueprint $table) {
+        Schema::create('attachment_note', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('attachment_id')->constrained()->onDelete('cascade');
+            $table->foreignId('note_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attachments');
+        Schema::dropIfExists('attachment_note');
     }
 };
